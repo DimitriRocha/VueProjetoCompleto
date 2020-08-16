@@ -31,10 +31,65 @@ const routes = [
 				path: '',
 				name: 'AdminDashboardHome',
 				meta:{
-					navbar: false,
 					authorize: true
 				},
 				component: () => import('../components/AdminDashboard/ViewHome/Index.vue')
+			},
+			{
+				path: 'modules',
+				component: () => import('../components/AdminDashboard/ViewModules/Index.vue'),
+				children: [
+					{
+						path: '',
+						name: 'AdminDashboardModules',
+						meta:{
+							authorize: true
+						},
+						component: () => import('../components/AdminDashboard/ViewModules/InnerPages/Home.vue'),
+					},
+				]
+			},
+			{
+				path: 'bugs',
+				component: () => import('../components/AdminDashboard/ViewBugs/Index.vue'),
+				children: [
+					{
+						path: '',
+						name: 'AdminDashboardBugs',
+						meta:{
+							authorize: true
+						},
+						component: () => import('../components/AdminDashboard/ViewBugs/InnerPages/Home.vue'),
+					},
+				]
+			},
+			{
+				path: 'finances',
+				component: () => import('../components/AdminDashboard/ViewFinances/Index.vue'),
+				children: [
+					{
+						path: '',
+						name: 'AdminDashboardFinances',
+						meta:{
+							authorize: true
+						},
+						component: () => import('../components/AdminDashboard/ViewFinances/InnerPages/Home.vue'),
+					},
+				]
+			},
+			{
+				path: 'customers',
+				component: () => import('../components/AdminDashboard/ViewCustomers/Index.vue'),
+				children: [
+					{
+						path: '',
+						name: 'AdminDashboardCustomers',
+						meta:{
+							authorize: true
+						},
+						component: () => import('../components/AdminDashboard/ViewCustomers/InnerPages/Home.vue'),
+					},
+				]
 			},
 		]
 	},
@@ -46,7 +101,6 @@ const routes = [
 				path: '',
 				name: 'CompanyDashboardHome',
 				meta:{
-					navbar: false,
 					authorize: true
 				},
 				component: () => import('../components/CompanyDashboard/ViewHome/Index.vue')

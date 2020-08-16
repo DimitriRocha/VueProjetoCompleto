@@ -1,9 +1,9 @@
 <template lang="html">
-	<div class="container-fluid dash_content_container bg-light p-0">
+	<div class="container-fluid overflow-auto dash_content_container bg-light p-0">
 		<div class="float-left">
 			<Sidebar :userName="userName"/>
 		</div>
-		<div class="vh-100">
+		<div class="vh-100 overflow-auto">
 			<router-view/>
 		</div>
 	</div>

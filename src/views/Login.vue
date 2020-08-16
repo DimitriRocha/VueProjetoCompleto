@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-6 pl-0">
 				<div class="position-absolute logo">
-					<img src="@/assets/empresa_logo.png" alt="">
+					<img src="@/assets/LOGO-02.png" alt="">
 				</div>
 				<div id="wave" class="">
 				</div>
@@ -12,7 +12,7 @@
 				<div class="mt-5 p-5">
 					<h4 class="text-dark mt-5">Fazer o login no sistema</h4>
 					<BasicDynamicForm :formData.sync="formData" :setValidations="formValidations" :touchAll="isTrySubmitForm" @isFormInvalidStateChanged="(isInvalid) => {isFormInvalid = isInvalid}"></BasicDynamicForm>
-					<button @click="loginAction(formData)" class="btn btn-primary mt-4 w-100" type="button" name="button">Entrar</button>
+					<button @click="loginAction(formData)" class="btn btn-soft-dark mt-4 w-100" type="button" name="button">Entrar</button>
 				</div>
 			</div>
 		</div>
@@ -101,7 +101,7 @@ export default {
 	position: relative;
 	height: 84.4vh;
 	width: 50%;
-	background: $base-darker;
+	background: $base-dark;
 }
 
 #wave:before {
@@ -111,7 +111,7 @@ export default {
 	border-radius: 0% 100% 0% 0%;
 	width: 200%;
 	height: 68.5%;
-	background-color: $base-darker;
+	background-color: $base-dark;
 	top: 50%;
 }
 
@@ -132,7 +132,7 @@ export default {
 	left: 50%;
 	transform: translate(-50%, -60%);
 	border-radius: 50%;
-	background-color: $base-secondary;
+	background-color: $base-darker;
 	width: 185px;
 	height: 185px;
 }

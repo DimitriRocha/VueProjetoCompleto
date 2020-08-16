@@ -53,26 +53,6 @@ export default {
 							linkTo: "/admin",
 							iconClassName: "house",
 						},
-						{
-							name: "Módulos",
-							linkTo: "/admin/modules",
-							iconClassName: "columns-gap",
-						},
-						{
-							name: "Chamados e bugs",
-							linkTo: "/admin/bugs",
-							iconClassName: "bug",
-						},
-						{
-							name: "Financeiro",
-							linkTo: "/admin/finances",
-							iconClassName: "cash-stack",
-						},
-						{
-							name: "Clientes",
-							linkTo: "/admin/customers",
-							iconClassName: "people",
-						},
 					]
 				},
 				User: {

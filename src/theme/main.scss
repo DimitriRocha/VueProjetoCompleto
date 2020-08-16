@@ -1,20 +1,29 @@
+//https://coolors.co/e0851c-3b429f-000000-2a3c51-ffebe7-bccaf1-18f500-d7263d-ccc900
 // Cores base do projeto
-$base-primary: #004A98;
-$base-secondary: #FBED00;
+$base-primary: #E0851C;
+$base-secondary: #3B429F;
 
 // Cores originadas a partir da base que serão usadas no projeto
-$base-darker: #0D0630;
-$base-dark: #21295C;
-$base-light: #FCC895;
-$base-lighter: #FFFDFD;
+$base-darker: #000000;
+$base-dark: #2A3C51;
+$base-light: #FFBBAD;
+$base-lighter: #EEF2FB;
+$base-secondary-lighter: #f0ebeb;
+
+$base-success: #18F500;
+$base-danger: #D7263D ;
+$base-warning: #CCC900;
 
 
 $theme-colors: (
+  "primary": $base-primary,
+  "secondary": $base-secondary,
+  "soft-dark": $base-dark,
   "dark": $base-darker,
+  "soft-light": $base-light,
+  "secondary-light": $base-secondary-lighter,
   "light": $base-lighter,
-  "primary": $base-primary
+  "success": $base-success,
+  "danger": $base-danger,
+  "warning": $base-warning,
 );
-
-.bg-soft-light{
-	background-color: $base-light;
-}
