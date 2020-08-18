@@ -105,7 +105,23 @@ const routes = [
 				},
 				component: () => import('../components/CompanyDashboard/ViewHome/Index.vue')
 			},
+			{
+				path: 'shop',
+				name: 'CompanyDashboardShop',
+				meta:{
+					authorize: true
+				},
+				component: () => import('../components/CompanyDashboard/ViewStore/Index.vue')
+			},
 		]
+	},
+	{
+		path: '/select_company',
+		name: 'ChooseCompany',
+		component: () => import('../views/ChooseCompany.vue'),
+		meta:{
+			authorize: true
+		},
 	},
 ]
 
@@ -126,8 +142,12 @@ router.beforeEach(async (to, from, next) => {
 		if (Store.getters.isAdmin && to.path.split("/")[1] != 'admin') {
 			return next('/admin');
 		}
-		else if(Store.getters.isCompanyAdmin && to.path.split("/")[1] != 'dashboard'){
-			return next('/dashboard');
+		else if(Store.getters.isCompanyAdmin && to.path.split("/")[1] != 'dashboard' && Store.getters.isCompanyAdmin && to.path.split("/")[1] != 'select_company'){
+			if (localStorage.getItem('currentCompany')) {
+				return next('/dashboard');
+			}else{
+				return next('/select_company');
+			}
 		}
 	}
 

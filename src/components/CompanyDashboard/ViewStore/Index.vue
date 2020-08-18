@@ -1,6 +1,6 @@
 <template lang="html">
 	<div class="">
-		Test
+		This is modules
 	</div>
 </template>
 

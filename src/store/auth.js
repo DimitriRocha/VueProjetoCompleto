@@ -12,13 +12,13 @@ const getters = {
 	},
 	getUserName(state) {
 		if (state.currentUser) {
-			return state.currentUser.username;
+			return state.currentUser.name;
 		}else{
 			return;
 		}
 	},
 	getCompanyId(state) {
-		return state.currentUser.empresaId;
+		return localStorage.getItem('currentCompany');
 	},
 	isAdmin(state){
 		if(state.currentUser.role == "Admin"){

@@ -1,7 +1,7 @@
 <template lang="html">
 	<div>
 		<b-navbar toggleable="lg" type="dark" class="bg-darker d-md-flex d-none">
-			<b-navbar-brand href="#">OVarejão</b-navbar-brand>
+			<b-navbar-brand href="#">Projeto Kokytos</b-navbar-brand>
 
 			<b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -16,11 +16,6 @@
 
 				<!-- Right aligned nav items -->
 				<b-navbar-nav class="ml-auto">
-					<b-nav-item>
-						<router-link class="text-light" to="/filter">
-							Filtrar Por Carro
-						</router-link>
-					</b-nav-item>
 					<div v-if="loggedIn">
 						<b-nav-item-dropdown right>
 							<template v-slot:button-content>

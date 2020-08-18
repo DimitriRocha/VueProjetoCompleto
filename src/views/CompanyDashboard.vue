@@ -25,12 +25,15 @@ export default {
 	components: {
 		Sidebar
 	},
-	mounted(){
-
+	created(){
+		this.checkIfCompanyIsSet();
 	},
 	methods:{
-
-
+		checkIfCompanyIsSet(){
+			if(!localStorage.getItem('currentCompany')){
+				this.$router.push('/select_company');
+			}
+		}
 	},
 	computed: {
 		userName(){
