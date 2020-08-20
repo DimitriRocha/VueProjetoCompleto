@@ -59,6 +59,11 @@ export default {
 					title: "Usuário",
 					links: [
 						{
+							name: "Posição financeira",
+							linkTo: "/dashboard/payment",
+							iconClassName: "cash-stack",
+						},
+						{
 							name: "Novos módulos",
 							linkTo: "/dashboard/shop",
 							iconClassName: "cart-plus",
