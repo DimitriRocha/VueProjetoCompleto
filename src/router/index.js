@@ -47,6 +47,14 @@ const routes = [
 						},
 						component: () => import('../components/AdminDashboard/ViewModules/InnerPages/Home.vue'),
 					},
+					{
+						path: 'calendar',
+						name: 'AdminDashboardModulesCalendar',
+						meta:{
+							authorize: true
+						},
+						component: () => import('../components/AdminDashboard/ViewModules/InnerPages/Calendar.vue'),
+					},
 				]
 			},
 			{
@@ -112,6 +120,20 @@ const routes = [
 					authorize: true
 				},
 				component: () => import('../components/CompanyDashboard/ViewStore/Index.vue')
+			},
+			{
+				path: 'calendar',
+				component: () => import('../components/CompanyDashboard/ViewCalendarModule/Index.vue'),
+				children: [
+					{
+						path: '',
+						name: 'CompanyDashboardShop',
+						component: () => import('../components/CompanyDashboard/ViewCalendarModule/InnerPages/Home.vue'),
+						meta:{
+							authorize: true
+						},
+					}
+				]
 			},
 		]
 	},

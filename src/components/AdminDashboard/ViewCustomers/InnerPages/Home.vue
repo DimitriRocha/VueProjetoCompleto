@@ -30,7 +30,7 @@ export default {
 			viewModalInfo: this.getModalInfoReset(),
 			fields: [
 				{ key: 'id', label: '#', sortable: true, sortDirection: 'asc' },
-				{ key: 'name', label: 'Nome', sortable: true, sortDirection: 'asc' },
+				{ key: 'username', label: 'Nome', sortable: true, sortDirection: 'asc' },
 				{ key: 'active', label: 'Ativo', formatter: (value, key, item) => {
 					return value ? 'Sim' : 'Não'
 				}, },
@@ -45,7 +45,7 @@ export default {
 		ViewModalGenerator
 	},
 	mounted(){
-		this.$axios.get(`/company`)
+		this.$axios.get(`/user`)
 		.then((response) => {
 			this.items = response.data;
 		})
@@ -86,7 +86,7 @@ export default {
 			return {
 				show: false,
 				actionType: 'view',
-				url: '/company',
+				url: '/user',
 				objId: null,
 				title: "Adicionar módulo",
 				formData: {

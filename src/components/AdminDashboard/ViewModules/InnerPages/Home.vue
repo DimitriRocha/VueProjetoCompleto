@@ -14,7 +14,8 @@
 			<b-table table-variant="secondary-light" head-variant="dark" striped hover bordered :fields="modulesTable.fields" :items="modulesTable.items">
 				<template v-slot:cell(actions)="row">
 					<b-button class="mr-2" @click="openModalGenerator('view', row.item.id)"><b-icon icon="eye-fill" aria-hidden="true"></b-icon></b-button>
-					<b-button @click="openModalGenerator('edit', row.item.id)"><b-icon icon="pencil-square" aria-hidden="true"></b-icon></b-button>
+					<b-button class="mr-2" @click="openModalGenerator('edit', row.item.id)"><b-icon icon="pencil-square" aria-hidden="true"></b-icon></b-button>
+					<router-link :to="'modules/'+row.item.idName"><b-button><b-icon icon="screwdriver" aria-hidden="true"></b-icon></b-button></router-link>
 				</template>
 			</b-table>
 		</div>
@@ -95,6 +96,15 @@ export default {
 					name: {
 						idName: "name",
 						label: "Nome",
+						type: "text",
+						value: null,
+						style: {
+							color: document.$COLORS.base_dark
+						}
+					},
+					idName: {
+						idName: "idName",
+						label: "Identificador (Rota)",
 						type: "text",
 						value: null,
 						style: {

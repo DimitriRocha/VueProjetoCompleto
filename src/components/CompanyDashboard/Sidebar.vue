@@ -118,14 +118,33 @@ export default {
 					let currentModule = response.data[moduleIndex];
 					this.sidebarSubmenusData.general.links.push({
 						name: currentModule.name,
-						linkTo: "/dashboard",
-						iconClassName: "box",
+						linkTo: `/dashboard/${currentModule.idName}`,
+						iconClassName: this.getIconByIdName(currentModule.idName),
 					});
 				}
 			})
 			.catch((error) => {
 				console.log(error);
 			});
+		},
+		getIconByIdName(idName){
+			let returnIconName = 'box';
+			switch (idName) {
+				case 'calendar':{
+					returnIconName = 'calendar3';
+					break;
+				}
+				case 'erp':{
+					returnIconName = 'briefcase';
+					break;
+				}
+				case 'sales':{
+					returnIconName = 'handbag';
+					break;
+				}
+			}
+
+			return returnIconName;
 		}
 	},
 	computed:{
