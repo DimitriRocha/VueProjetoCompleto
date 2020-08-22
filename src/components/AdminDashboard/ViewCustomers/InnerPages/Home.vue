@@ -1,7 +1,7 @@
 <template lang="html">
-	<div class="rounded shadow-lg w-80 m-auto bg-light text-light p-relative">
+	<div class="rounded shadow-lg w-80 m-auto bg-light text-light position-relative">
 		<ViewModalGenerator v-if="viewModalInfo.show" :title="viewModalInfo.title" @close="closeViewModalGenerator()" :url="viewModalInfo.url" :actionType="viewModalInfo.actionType" :formData="viewModalInfo.formData" :objId="viewModalInfo.objId"/>
-		<div class="squareLogo shadow-sm p-2">
+		<div class="squareLogo shadow-sm p-2 position-absolute">
 			<b-icon icon="people" class="w-100 h-100"></b-icon>
 		</div>
 		<div class="px-4">
@@ -109,11 +109,10 @@ export default {
 <style lang="scss" scoped>
 .squareLogo{
 	height: 50px;
-	width: 50px;
-	border-radius: 5px;
-	background-color: $base-dark;
-	position: relative;
-	top: -25px;
-	left: 25px;
+    width: 50px;
+    border-radius: 5px;
+    background-color: #2A3C51;
+    position: relative;
+    top: 25px;
 }
 </style>

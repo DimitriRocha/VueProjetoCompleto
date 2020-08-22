@@ -1,5 +1,5 @@
 <template lang="html">
-	<div class="">
+	<div class="container-fluid min-vh-100 bg-secondary-light pt-5">
 		<router-view/>
 	</div>
 </template>

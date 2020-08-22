@@ -33,12 +33,12 @@
 
 						<!-- Caso haja validação para esse input -->
 						<span v-if="$v.formData[key]"  :class="{ 'error-input': $v.formData[key].$error }">
-							<b-form-textarea class="" name="" v-model="$v.formData[key].value.$model" :rows="(form.rows ? form.rows : 3)" :style="(form.resize ? form.resize : 'resize: none')" :disabled="form.disabled"></b-form-textarea>
+							<b-form-textarea v-model="$v.formData[key].value.$model" :rows="(form.rows ? form.rows : 3)" :style="(form.resize ? form.resize : 'resize: none')" :disabled="form.disabled"></b-form-textarea>
 						</span>
 
 						<!-- Caso não haja validação para o input -->
 						<span v-else>
-							<b-form-textarea class="" name="" v-model="form.value" :rows="(form.rows ? form.rows : 3)" :style="(form.resize ? form.resize : 'resize: none')" :disabled="form.disabled"></b-form-textarea>
+							<b-form-textarea v-model="form.value" :rows="(form.rows ? form.rows : 3)" :style="(form.resize ? form.resize : 'resize: none')" :disabled="form.disabled"></b-form-textarea>
 						</span>
 
 					</template>
@@ -48,12 +48,12 @@
 
 						<!-- Caso haja validação para esse input -->
 						<span v-if="$v.formData[key]"  :class="{ 'error-input': $v.formData[key].$error }">
-							<b-form-select class="" name="" v-model="$v.formData[key].value.$model" :options="form.options" :value-field="form.selectValueFieldName" :text-field="form.selectLabelFieldName"></b-form-select>
+							<b-form-select v-model="$v.formData[key].value.$model" :options="form.options" :value-field="form.selectValueFieldName" :text-field="form.selectLabelFieldName"></b-form-select>
 						</span>
 
 						<!-- Caso não haja validação para o input -->
 						<span v-else>
-							<b-form-select class="" name="" v-model="form.value" :options="form.options" :value-field="form.selectValueFieldName" :text-field="form.selectLabelFieldName"></b-form-select>
+							<b-form-select v-model="form.value" :options="form.options" :value-field="form.selectValueFieldName" :text-field="form.selectLabelFieldName"></b-form-select>
 						</span>
 
 					</template>
@@ -62,12 +62,37 @@
 					<template v-else-if="form.type == 'switch'">
 						<!-- Caso haja validação para esse input -->
 						<span v-if="$v.formData[key]"  :class="{ 'error-input': $v.formData[key].$error }">
-							<b-form-checkbox switch size="lg" stacked class="" name="" v-model="$v.formData[key].value.$model" :value="true" :unchecked-value="false"></b-form-checkbox>
+							<b-form-checkbox switch size="lg" stacked v-model="$v.formData[key].value.$model" :value="true" :unchecked-value="false"></b-form-checkbox>
 						</span>
 
 						<!-- Caso não haja validação para o input -->
 						<span v-else>
-							<b-form-checkbox switch size="lg" stacked class="" name="" v-model="form.value" :value="true" :unchecked-value="false"></b-form-checkbox>
+							<b-form-checkbox switch size="lg" stacked v-model="form.value" :value="true" :unchecked-value="false"></b-form-checkbox>
+						</span>
+					</template>
+
+					<!-- Caso seja um tipo time -->
+					<template v-else-if="form.type == 'datetime'">
+						<!-- Caso haja validação para esse input -->
+						<span v-if="$v.formData[key]"  :class="{ 'error-input': $v.formData[key].$error }">
+							<div class="row">
+								<div class="col-6">
+									<b-form-datepicker v-model="$v.formData[key].value.$model"></b-form-datepicker>
+								</div>
+								<div class="col-6">
+									<b-form-timepicker v-model="$v.formData[key].value.$model"></b-form-timepicker>
+								</div>
+							</div>
+						</span>
+						<span v-else>
+							<div class="row">
+								<div class="col-6">
+									<b-form-datepicker :value="getDateFromUTC(form.value)" v-on:input="updateValue(formData[key], $event)"></b-form-datepicker>
+								</div>
+								<div class="col-6">
+									<b-form-timepicker :value="getTimeFromUTC(form.value)" v-on:input="updateValue(formData[key], $event)"></b-form-timepicker>
+								</div>
+							</div>
 						</span>
 					</template>
 
@@ -140,7 +165,25 @@ export default {
 		},
 	},
 	methods:{
-
+		getDateFromUTC(convertDate){
+			if (convertDate) {
+				let dt = new Date(convertDate);
+				return dt.toISOString().substring(0, 10);
+			}
+		},
+		getTimeFromUTC(convertDate){
+			if (convertDate) {
+				let dt = new Date(convertDate);
+				return dt.toISOString().substring(11,19);
+			}
+		},
+		updateValue(obj, value){
+			// Isso quebra tudo por algum motivo, devo estar em um loop infinito?
+			// let newValue = obj.value.replace(obj.value.substring(11,19), value);
+			// obj.value = newValue;
+		}
+	},
+	computed:{
 	},
 	directives: {
 		mask
