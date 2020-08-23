@@ -17,21 +17,31 @@
 					</div>
 				</b-calendar>
 			</div>
-			<div class="col-9">
-
+			<div class="col-3">
+				<BasicDynamicForm :formData.sync="formData"></BasicDynamicForm>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+import BasicDynamicForm from '@/components/BasicDynamicForm';
+
 export default {
 	data(){
 		return {
 			value: null,
+			formData:{
+				date: {
+					idName: "date",
+					label: "date",
+					type: "datetime-local",
+					value: null,
+				}
+			}
 		}
 	},
-	methods:{
+	methods: {
 		setToday() {
 			const now = new Date()
 			this.value = new Date(now.getFullYear(), now.getMonth(), now.getDate())
@@ -42,6 +52,9 @@ export default {
 	},
 	computed: {
 		
+	},
+	components:{
+		BasicDynamicForm
 	}
 }
 </script>
