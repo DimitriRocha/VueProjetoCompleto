@@ -1,6 +1,6 @@
 <template lang="html">
 	<div class="rounded shadow-lg w-80 m-auto bg-light pt-5 px-3 position-relative">
-		<ViewModalGenerator v-if="viewModalInfo.show" :title="viewModalInfo.title" @close="closeViewModalGenerator()" :url="viewModalInfo.url" :actionType="viewModalInfo.actionType" :formData="viewModalInfo.formData" :objId="viewModalInfo.objId"/>
+		<CalendarActionsModal v-if="viewModalInfo.show" :title="viewModalInfo.title" @close="closeViewModalGenerator()" :url="viewModalInfo.url" :actionType="viewModalInfo.actionType" :objId="viewModalInfo.objId" :setUpDate="viewModalInfo.setUpDate"/>
 		<div class="squareLogo shadow-sm p-2 text-light position-absolute">
 			<b-icon icon="calendar3" class="w-100 h-100"></b-icon>
 		</div>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import ViewModalGenerator from '@/components/ViewModalGenerator';
+import CalendarActionsModal from '@/components/CompanyDashboard/ViewCalendarModule/InnerPages/CalendarActionsModal';
 import FullCalendar from '@fullcalendar/vue';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -40,6 +40,8 @@ export default {
 		return {
 			viewModalInfo: this.getModalInfoReset(),
 			value: null,
+			timeZone: 'UTC',
+			timeFormat: 'H(:mm)',
 			calendarOptions: {
 				headerToolbar: {
 					left: 'dayGridMonth,timeGridWeek,timeGridDay',
@@ -75,7 +77,7 @@ export default {
 	},
 	components:{
 		FullCalendar,
-		ViewModalGenerator
+		CalendarActionsModal
 	},
 	mounted(){
 		this.setCurrentUserEvents();
@@ -89,14 +91,15 @@ export default {
 			this.value = ''
 		},
 		handleDateClick(arg){
+			this.viewModalInfo.setUpDate = arg.date.toISOString().substring(0, 16)
 			this.viewModalInfo.actionType = 'add';
-			this.viewModalInfo.title = "Adicionar cliente";
+			this.viewModalInfo.title = "Adicionar evento";
 			this.viewModalInfo.show = true;
 		},
 		handleEventClick(arg){
 			this.viewModalInfo.actionType = 'edit';
 			this.viewModalInfo.objId = parseInt(arg.event.id);
-			this.viewModalInfo.title = "Ver cliente";
+			this.viewModalInfo.title = "Editar evento";
 			this.viewModalInfo.show = true;
 			console.log(arg.event);
 		},
@@ -107,7 +110,9 @@ export default {
 					this.calendarOptions.events.push({
 						id: item.id,
 						title: item.name,
-						date: this.dateTimeToDate(item.scheduledTime),
+						allDay: this.dateTimeToDate(item.scheduledEndTime) == null,
+						start: item.scheduledTime,
+						end: item.scheduledEndTime,
 					});
 				});
 			})
@@ -116,8 +121,11 @@ export default {
 			});
 		},
 		dateTimeToDate(convertDate){
-			let dt = new Date(convertDate);
-			return dt.toISOString().substring(0, 10);
+			if (convertDate) {
+				let dt = new Date(convertDate);
+				return dt.toISOString().substring(0, 10);
+			}
+			return null
 		},
 		getModalInfoReset(){
 			return {
@@ -125,27 +133,8 @@ export default {
 				actionType: 'view',
 				url: '/calendar/appointment',
 				objId: null,
-				title: "Adicionar módulo",
-				formData: {
-					name: {
-						idName: "name",
-						label: "Nome",
-						type: "text",
-						value: null,
-					},
-					scheduledTime: {
-						idName: "scheduledTime",
-						label: "Inicio",
-						type: "datetime",
-						value: null,
-					},
-					scheduledEndTime: {
-						idName: "scheduledTime",
-						label: "Fim",
-						type: "datetime",
-						value: null,
-					},
-				}
+				title: "Adicionar evento",
+				setUpDate: null
 			}
 		},
 		closeViewModalGenerator(){
@@ -159,13 +148,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-</style>
-
-<style lang="scss">
-.fc-daygrid-day-events{
-	cursor: pointer;
-}
-
 .squareLogo{
 	height: 50px;
 	width: 50px;
@@ -174,5 +156,11 @@ export default {
 	position: relative;
 	top: -25px;
 	left: 25px;
+}
+</style>
+
+<style lang="scss">
+.fc-daygrid-day-events{
+	cursor: pointer;
 }
 </style>

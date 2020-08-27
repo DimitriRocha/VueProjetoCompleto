@@ -111,7 +111,6 @@ export default {
 			});
 		},
 		getCurrentCompanyModules(companyId){
-			// /CompanyModules/
 			this.$axios.get(`/module/CompanyModules/${companyId}`)
 			.then((response) => {
 				for(let moduleIndex in response.data){
@@ -134,8 +133,8 @@ export default {
 					returnIconName = 'calendar3';
 					break;
 				}
-				case 'erp':{
-					returnIconName = 'briefcase';
+				case 'hr':{
+					returnIconName = 'person-badge';
 					break;
 				}
 				case 'sales':{

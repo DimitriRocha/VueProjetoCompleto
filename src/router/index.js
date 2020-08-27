@@ -127,8 +127,22 @@ const routes = [
 				children: [
 					{
 						path: '',
-						name: 'CompanyDashboardShop',
+						name: 'CompanyDashboardCalendar',
 						component: () => import('../components/CompanyDashboard/ViewCalendarModule/InnerPages/Home.vue'),
+						meta:{
+							authorize: true
+						},
+					}
+				]
+			},
+			{
+				path: 'hr',
+				component: () => import('../components/CompanyDashboard/ViewHumanResourcesModule/Index.vue'),
+				children: [
+					{
+						path: '',
+						name: 'CompanyDashboardHumanResourcesHome',
+						component: () => import('../components/CompanyDashboard/ViewHumanResourcesModule/InnerPages/Home.vue'),
 						meta:{
 							authorize: true
 						},

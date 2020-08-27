@@ -4,8 +4,8 @@
 			<div class="col-12 mt-2" v-for="(form, key) in formData" v-bind:style="form.style">
 				<b-form-group  :label="form.label" :disabled="disabled">
 					<!-- Caso seja um input padrão -->
-					<template v-if="form.type == 'text' || form.type == 'password' || form.type == 'number' || form.type == 'email' || form.type == 'date' || form.type == 'month'">
-
+					<template v-if="form.type == 'text' || form.type == 'password' || form.type == 'number' || form.type == 'email' || form.type == 'datetime-local' || form.type == 'date' || form.type == 'month'">
+					
 						<!-- Caso haja validação para esse input -->
 						<span v-if="$v.formData[key]" :class="{ 'error-input': $v.formData[key].$error }">
 
