@@ -17,7 +17,7 @@ Vue.use(Vuelidate)
 
 Vue.config.productionTip = false
 
-Vue.prototype.$api = process.env.NODE_ENV === 'development'  ? 'https://localhost:5001'  : 'https://api.pagcare.com.br';
+Vue.prototype.$api = process.env.NODE_ENV === 'development'  ? 'https://localhost:5001'  : 'https://localhost:5002';
 
 axios.defaults.baseURL = Vue.prototype.$api;
 axios.defaults.withCredentials = true
